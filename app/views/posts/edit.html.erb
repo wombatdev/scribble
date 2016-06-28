@@ -1,0 +1,8 @@
+
+<h2><%= link_to "Posts", posts_path %></h2>
+
+<h3>New Post</h3>
+
+<%= render 'form' %>
+
+<%= link_to 'Delete!', post_path(@post), method: :delete, class: 'delete' %>

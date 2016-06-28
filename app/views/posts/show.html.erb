@@ -6,9 +6,9 @@
 
 <h3>Comments <%= link_to "(+)", new_post_comment_path(@post) %></h3>
 <ul>
-  <% @post.comments.each do |comment| %>
+  <% @post.comments.reverse.each do |comment| %>
     <li>
-      <%= comment.content %>
+      <%= comment.content %> <%= link_to "(edit)", edit_post_comment_path(@post, comment) %>
       <br>
       - <%= comment.commenter %>
     </li>
