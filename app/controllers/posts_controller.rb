@@ -37,9 +37,6 @@ class PostsController < ApplicationController
 
     def bump_up
         @post = Post.find(params[:id])
-        puts @post
-        puts @post.subject
-        puts @post.bumps
         temp = @post.bumps + 1
         Post.update(@post, :bumps => temp)
         redirect_to (:back)
