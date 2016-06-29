@@ -1,4 +1,4 @@
 
 <h2>Posts <a href="/posts/new">(+)</a></h2>
 
-<%= render partial: "post", collection: @posts.reverse %>
+<%= render partial: "post", collection: @posts.sort_by{|x| [x.created_at] }.reverse %>

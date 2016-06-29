@@ -1,0 +1,9 @@
+
+<h3>Posts</h3>
+<ul>
+    <% @category.posts.sort_by{|x| [x.created_at] }.reverse.each do |post| %>
+    <li>
+        <%= link_to "#{post.subject} - #{post.poster}", post_path(post) %>
+    </li>
+    <% end %>
+</ul>

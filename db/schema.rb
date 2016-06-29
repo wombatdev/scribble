@@ -11,17 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627180951) do
+ActiveRecord::Schema.define(version: 20160628175101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string   "content"
     t.string   "commenter"
+    t.integer  "bumps",      default: 0
     t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
@@ -30,9 +37,21 @@ ActiveRecord::Schema.define(version: 20160627180951) do
     t.string   "subject"
     t.string   "poster"
     t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "bumps",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "category_id"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "tags", ["category_id"], name: "index_tags_on_category_id", using: :btree
+  add_index "tags", ["post_id"], name: "index_tags_on_post_id", using: :btree
 
   add_foreign_key "comments", "posts"
 end

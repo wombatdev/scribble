@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
         t.string :subject
         t.string :poster
         t.string :body
+        t.integer :bumps, :default => 0
         t.timestamps null: false
     end
   end

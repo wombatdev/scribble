@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
+        @tag = Tag.new
     end
 
     def new
@@ -34,9 +35,26 @@ class PostsController < ApplicationController
         redirect_to posts_path
     end
 
+    def bump_up
+        @post = Post.find(params[:id])
+        puts @post
+        puts @post.subject
+        puts @post.bumps
+        temp = @post.bumps + 1
+        Post.update(@post, :bumps => temp)
+        redirect_to (:back)
+    end
+
+    def bump_down
+        @post = Post.find(params[:id])
+        temp = @post.bumps - 1
+        Post.update(@post, :bumps => temp)
+        redirect_to (:back)
+    end
+
     private
     def post_params
-        params.require(:post).permit(:subject, :poster, :body)
+        params.require(:post).permit(:subject, :poster, :body, :bumps)
     end
 
 end

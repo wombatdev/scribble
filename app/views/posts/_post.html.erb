@@ -1,8 +1,12 @@
 
 <ul>
     <li>
-      <a href="/posts/<%= post.id %>">
-        <%= post.subject %> - <%= post.poster %>
-      </a>
+        <%= post.bumps %> &nbsp
+        <a href="/posts/<%= post.id %>">
+            <%= post.subject %> - <%= post.poster%>
+        </a>
+        &nbsp(<%= link_to "+", bump_up_post_path(post), method: :post %>)
+        &nbsp/
+        &nbsp(<%= link_to "-", bump_down_post_path(post), method: :post %>)
     </li>
 </ul>
